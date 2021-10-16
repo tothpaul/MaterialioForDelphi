@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{42361237-BB74-4351-BFA7-25EE67A3CFA8}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="lib\Execute.MaterialIcons.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="lib\Execute.MaterialIcons.Design.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="src\Demo.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Execute_MaterialIcons">
+        <MSBuild Projects="lib\Execute.MaterialIcons.dproj"/>
+    </Target>
+    <Target Name="Execute_MaterialIcons:Clean">
+        <MSBuild Projects="lib\Execute.MaterialIcons.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Execute_MaterialIcons:Make">
+        <MSBuild Projects="lib\Execute.MaterialIcons.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Execute_MaterialIcons_Design">
+        <MSBuild Projects="lib\Execute.MaterialIcons.Design.dproj"/>
+    </Target>
+    <Target Name="Execute_MaterialIcons_Design:Clean">
+        <MSBuild Projects="lib\Execute.MaterialIcons.Design.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Execute_MaterialIcons_Design:Make">
+        <MSBuild Projects="lib\Execute.MaterialIcons.Design.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Demo">
+        <MSBuild Projects="src\Demo.dproj"/>
+    </Target>
+    <Target Name="Demo:Clean">
+        <MSBuild Projects="src\Demo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Demo:Make">
+        <MSBuild Projects="src\Demo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Execute_MaterialIcons;Execute_MaterialIcons_Design;Demo"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Execute_MaterialIcons:Clean;Execute_MaterialIcons_Design:Clean;Demo:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Execute_MaterialIcons:Make;Execute_MaterialIcons_Design:Make;Demo:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
